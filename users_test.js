@@ -11,6 +11,12 @@ Scenario('一般ユーザーは「ユーザー一覧」をクリックしてユ�
   login('user')
   I.amOnPage('https://craftzcat-neko.herokuapp.com/admin/users')
   I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/')
-  I.see('管理者権限が必要です')
+  I.see('タスク一覧')
+})
+
+Scenario('一般ユーザーはユーザー作成に遷移できない', (I, login) =>{
+  login('user')
+  I.amOnPage('https://craftzcat-neko.herokuapp.com/admin/users/new')
+  I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/')
   I.see('タスク一覧')
 })

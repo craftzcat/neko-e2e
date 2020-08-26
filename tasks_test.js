@@ -1,8 +1,5 @@
 Feature('Task')
 
-const taskName = Math.random().toString(32).substring(2)
-const editedDesc = Math.random().toString(5).substring(2)
-
 Scenario('タイトルをクリックしてタスク一覧に遷移か', (I, login) =>{
   login('admin')
   I.amOnPage('https://craftzcat-neko.herokuapp.com/labels')
@@ -21,10 +18,10 @@ Scenario('タスクを作成できるか', (I, login) =>{
   login('admin')
   I.click('タスク作成')
   I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/tasks/new')
-  I.fillField('名前', taskName)
+  I.fillField('名前', 'タスク')
   I.click('登録する')
   I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/tasks')
-  I.see(taskName)
+  I.see('タスク')
 })
 
 Scenario('タスクに名前がない場合、作成に失敗するか', (I, login) =>{
@@ -39,23 +36,23 @@ Scenario('タスクに名前がない場合、作成に失敗するか', (I, log
 
 Scenario('タスクの詳細ページにアクセスできるか', (I, login) =>{
   login('admin')
-  I.click('task49')
-  I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/tasks/50')
-  I.see('task49')
+  I.click('タスク')
+  I.see('タスク')
+  I.see('説明：')
 })
 
 Scenario('タスクを編集できるか', (I, login) =>{
   login('admin')
-  I.click('task50')
+  I.click('タスク')
   I.click('編集')
-  I.fillField('説明', editedDesc)
+  I.fillField('説明', 'This task was edited')
   I.click('更新する')
-  I.see(editedDesc)
+  I.see('This task was edited')
 })
 
 Scenario('タスクを削除できるか', (I, login) =>{
   login('admin')
-  I.click(taskName)
+  I.click('タスク')
   I.click('削除')
   I.acceptPopup
 })

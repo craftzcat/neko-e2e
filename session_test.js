@@ -2,16 +2,18 @@ Feature('Session')
 
 Scenario('ログインできるかどうか', (I, login) =>{
   login('user')
-  I.see('ログインしました')
+  I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/')
+  I.see('タスク一覧')
 })
 
-Scenario('ログアウトできるか', (I, login) =>{
+Scenario('ログイン状態でログインページに行くとrootページにリダイレクトする', (I, login) =>{
   login('admin')
-  I.click('ログアウト')
-  I.see('ログアウトしました')
+  I.amOnPage('https://craftzcat-neko.herokuapp.com/login')
+  I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/')
+  I.see('タスク一覧')
 })
 
-Scenario('間違った情報の入力時、ログアウトに失敗するかどうか', (I) =>{
+Scenario('間違った情報の入力時、ログインに失敗するかどうか', (I) =>{
   I.amOnPage('https://craftzcat-neko.herokuapp.com/login')
   I.fillField('Email', 'ThisIsWrong@Email.com')
   I.fillField('Password', 'ThisPasswordIsIncorrect')
