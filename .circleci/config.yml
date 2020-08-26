@@ -42,12 +42,13 @@ jobs:
             npx allure-commandline generate output
       - store_artifacts:
           path: allure-report
+
 workflows:
   version: 2
   nightly:
     triggers:
       - schedule:
-          cron: "0 23 * * *" # UTC15:00, 日本時間8:00
+          cron: "0 15 * * *"
           filters:
             branches:
               only:
