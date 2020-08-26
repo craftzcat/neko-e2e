@@ -35,7 +35,7 @@ jobs:
             - ~/usr/local/lib/node_modules
       - run:
           name: run tests
-          command: npx codeceptjs run-workers 4
+          command: npx codeceptjs run
       - run:
           name: Generate Report
           command: |
