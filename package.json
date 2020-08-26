@@ -11,5 +11,8 @@
   "license": "ISC",
   "devDependencies": {
     "codeceptjs": "^2.6.10"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
   }
 }
