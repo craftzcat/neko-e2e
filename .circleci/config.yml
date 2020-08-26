@@ -42,6 +42,12 @@ jobs:
             npx allure-commandline generate output
       - store_artifacts:
           path: allure-report
+      - run:
+          name: Send Report to Slack
+          command: |
+            curl -s -S -X POST \
+            -d "{ 'username': 'CircleCI', 'text': 'ビルド <$CIRCLE_BUILD_URL | $CIRCLE_BUILD_NUM> が完了しました:tada: <https://$CIRCLE_BUILD_NUM-290388163-gh.circle-artifacts.com/0/allure-report/index.html | テストレポート > が生成されました' }" \
+            $SLACK_WEBHOOK
 
 workflows:
   version: 2
