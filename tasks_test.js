@@ -14,6 +14,36 @@ Scenario('「タスク一覧」をクリックしてタスク一覧に遷移す�
   I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/tasks')
 })
 
+Scenario('タスクを名前検索できるか', (I, login) =>{
+  login('admin')
+  I.fillField('form input[name=name]', 'task50')
+  I.forceClick('検索')
+  I.see('task50')
+  I.dontSee('task49', '.task-status')
+  I.dontSee('タスク', '.task-name')
+})
+
+Scenario('タスクをステータス検索できるか', (I, login) =>{
+  login('admin')
+  I.selectOption('form select[name=status]', '着手中')
+  I.forceClick('検索')
+  I.see('着手中', '.task-status')
+  I.dontSee('未完了', '.task-status')
+  I.dontSee('完了', '.task-status')
+})
+
+Scenario('タスクをステータスと名前で検索できるか', (I, login) =>{
+  login('admin')
+  I.fillField('form input[name=name]', 'task')
+  I.selectOption('form select[name=status]', '完了')
+  I.forceClick('検索')
+  I.see('task41')
+  I.see('完了')
+  I.dontSee('タスク', '.task-name')
+  I.dontSee('未完了', '.task-status')
+  I.dontSee('着手中', '.task-status')
+})
+
 Scenario('タスクを作成できるか', (I, login) =>{
   login('admin')
   I.click('タスク作成')

@@ -1,9 +1,28 @@
+const { dataTable } = require("codeceptjs")
+
 Feature('Session')
+
+let pathes = new DataTable(['path', 'title'])
+pathes.add(['/tasks', 'タスク一覧'] )
+pathes.add(['/labels', 'ラベル一覧'])
+pathes.add(['/admin/users', 'ユーザー一覧'])
+
+Data(pathes).Scenario('ログインせずには管理画面にアクセスできない', (I, current) => {
+  I.amOnPage('https://craftzcat-neko.herokuapp.com' + current.path)
+  I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/login')
+  I.dontSee(current.title)
+})
 
 Scenario('ログインできるかどうか', (I, login) =>{
   login('user')
   I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/')
   I.see('タスク一覧')
+})
+
+Scenario('ログアウトできるかどうか', (I, login) =>{
+  login('user')
+  I.forceClick('ログアウト', '.logout')
+  I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/login')
 })
 
 Scenario('ログイン状態でログインページに行くとrootページにリダイレクトする', (I, login) =>{
