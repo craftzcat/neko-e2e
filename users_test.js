@@ -16,22 +16,6 @@ Scenario('一般ユーザーは「ユーザー一覧」をクリックしてユ�
   I.see('タスク一覧', 'h2')
 })
 
-Scenario('一般ユーザーはユーザー作成に遷移できない', (I, login) =>{
-  login('user')
-  I.amOnPage('https://craftzcat-neko.herokuapp.com/admin/users/new')
-  I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/')
-  I.see('タスク一覧', 'h2')
-  I.dontSee('ユーザー一覧', 'h2')
-})
-
-Scenario('一般ユーザーはユーザー作成に遷移できない', (I, login) =>{
-  login('user')
-  I.amOnPage('https://craftzcat-neko.herokuapp.com/admin/users/new')
-  I.waitUrlEquals('https://craftzcat-neko.herokuapp.com/')
-  I.see('タスク一覧', 'h2')
-  I.dontSee('ユーザー一覧', 'h2')
-})
-
 Scenario('名前を入力しないとユーザーを作成できない', (I, login) =>{
   login('admin')
   I.amOnPage('https://craftzcat-neko.herokuapp.com/admin/users/new')
