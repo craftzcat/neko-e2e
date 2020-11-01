@@ -13,6 +13,7 @@
     "codeceptjs": "^2.6.10"
   },
   "dependencies": {
+    "allure-commandline": "^2.13.0",
     "dotenv": "^8.2.0"
   }
 }
