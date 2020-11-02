@@ -26,7 +26,7 @@ exports.config = {
   },
   bootstrap: null,
   mocha: {},
-  name: 'gihyo-e2e',
+  name: 'neko-e2e',
   translation: 'ja-JP',
   plugins: {
     allure: {
